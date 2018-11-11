@@ -45,4 +45,8 @@ def colors(palette):
 
     return jsonify(result)
 
+
+class FinanciamentoController(object):
+  pass
+
 app.run(debug=True)
