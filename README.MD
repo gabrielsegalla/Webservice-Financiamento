@@ -1,7 +1,7 @@
 
 # WebService para Financiamento
 
-
+Demo do Projeto : https://webservice-financiamento.herokuapp.com/apidocs/
 
 ## Descrição do Projeto
 
@@ -42,6 +42,4 @@ Instale as bibliotecas necessárias :
 Execute o projeto :
 > $ (env) python run.py 
 
-O Sistema ficará disponivel na url [http://localhost:5000/](http://localhost:5000/)
-
-Para conferir a documentação acesse [http://localhost:5000/apidocs/](http://localhost:5000/apidocs/)
+A documentação do Sistema ficará disponivel na url [http://localhost:5000/apidocs/](http://localhost:5000/apidocs/)
