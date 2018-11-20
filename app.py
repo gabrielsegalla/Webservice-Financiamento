@@ -399,8 +399,7 @@ def NovoUsuario():
         required: true
     responses:
       200:
-        description: Retorna o 
-        usuário inserido.
+        description: Retorna o usuário inserido.
         examples:
           data: [
             {
