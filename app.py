@@ -216,3 +216,10 @@ def runserver():
 
 if __name__ == "__main__":
     manager.run()
+
+
+app.run(
+        host=(host),
+        port=int(port),
+        debug=bool(debug)
+    )
