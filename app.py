@@ -14,17 +14,14 @@ from flasgger import Swagger
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
-from flask.ext.cache import flask_cache
-from flask.ext.heroku import Heroku
 import os
 
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/webservice-financiamento'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://dbjyuqkkswmlua:d2bdf2092bf8f2005e8959e67bd9deb1292c25613a4ce748918d5a201212c438@ec2-54-163-230-178.compute-1.amazonaws.com:5432/d9cbksrafidfrv'                                                                                       
 CORS(app)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-heroku = Heroku(app)
 host = "localhost"
 debug = True
 port = 8081
