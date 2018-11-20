@@ -1,4 +1,4 @@
-from server.server import app, db, host, port, debug, ma
+# from server.server import app, db, host, port, debug, ma
 from flask_migrate import Migrate, MigrateCommand
 from flask import request, jsonify
 from flask_script import Manager
@@ -9,6 +9,25 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 #from flasgger import Swagger
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
+from flask_cors import CORS
+import os
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/webservice-financiamento'
+CORS(app)
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
+
+host = "localhost"
+debug = True
+port = 8081
+
+SQLALCHEMY_ECHO = False
+
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
@@ -218,8 +237,8 @@ if __name__ == "__main__":
     manager.run()
 
 
-app.run(
-        host=(host),
-        port=int(port),
-        debug=bool(debug)
-    )
+# app.run(
+#         host=(host),
+#         port=int(port),
+#         debug=bool(debug)
+#     )
