@@ -23,7 +23,7 @@ app = Flask(__name__)
 CORS(app)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-
+heroku = Heroku(app)
 host = "localhost"
 debug = True
 port = 8081
