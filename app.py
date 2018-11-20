@@ -14,11 +14,12 @@ from flasgger import Swagger
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
+from flask.ext.heroku import Heroku
 import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/webservice-financiamento'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/webservice-financiamento'
 CORS(app)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -238,6 +239,43 @@ def Prestacoes():
 
 @app.route("/calcular/possibilidade/compra/usuario/<int:user_id>", methods=['POST'])
 def PossibilidadeCompra(user_id):
+    """Recebe o valor do imóvel, o salário do indivíduo, o prazo de financiamento com no máximo 45 anos, e consulte o WebService construído na etapa 1 informando uma entrada de 20% e uma taxa de 10% ao ano, e retorne as parcelas informando se a renda do individuo é suficiente para pagar a parcela, considerando que a parcela deve ter um valor máximo de 30% dos rendimentos do indivíduo.
+    ---
+    parameters:
+      - name: valor_imovel
+        in: path
+        type: integer
+        required: true
+      - name: prazo_financiamento_anos
+        in: path
+        type: integer
+        required: true
+    responses:
+      200:
+        description: Retorna as parcelas informando se a renda do individuo é suficiente para pagar a parcela.
+        examples:
+          data: [
+            {
+                "id": 0,
+                "saldo_total": 27000
+            },
+            {
+                "amortizacao": 9000,
+                "id": 1,
+                "juros": 2700,
+                "prestacao": 11700,
+                "saldo_devedor": 18000
+            },
+            {
+                "amortizacao": 9000,
+                "id": 2,
+                "juros": 1800,
+                "prestacao": 10800,
+                "saldo_devedor": 9000
+            }
+          ]
+
+    """
     response = FinanciamentoController().verifica_condicoes_para_parcelar(
         user_id,
         request.values.get('valor_imovel'),
