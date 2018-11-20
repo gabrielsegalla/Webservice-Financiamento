@@ -205,7 +205,7 @@ def Prestacoes():
     responses:
       200:
         description: Uma lista de parcelas, contendo sua data de vencimento e o  valor da parcela na data de vencimento utilizando a metodologia SAC
-        schema:
+        examples:
           data: [
             {
                 "id": 0,
@@ -226,7 +226,6 @@ def Prestacoes():
                 "saldo_devedor": 9000
             }
           ]
-        
 
     """
     response = FinanciamentoController().gerar_parcelas(
