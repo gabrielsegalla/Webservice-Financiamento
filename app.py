@@ -184,6 +184,8 @@ def Prestacoes():
     e retorne uma lista de parcelas, contendo sua data de vencimento e o 
     valor da parcela na data de vencimento utilizando a metodologia SAC..
     ---
+    tags:
+        - Calculo
     parameters:
       - name: valor_imovel
         in: path
@@ -239,6 +241,8 @@ def Prestacoes():
 def PossibilidadeCompra(user_id):
     """Recebe o valor do imóvel, o salário do indivíduo, o prazo de financiamento com no máximo 45 anos, e consulte o WebService construído na etapa 1 informando uma entrada de 20% e uma taxa de 10% ao ano, e retorne as parcelas informando se a renda do individuo é suficiente para pagar a parcela, considerando que a parcela deve ter um valor máximo de 30% dos rendimentos do indivíduo.
     ---
+    tags:
+        - Calculo
     parameters:
       - name: valor_imovel
         in: path
@@ -254,22 +258,91 @@ def PossibilidadeCompra(user_id):
         examples:
           data: [
             {
-                "id": 0,
-                "saldo_total": 27000
-            },
-            {
-                "amortizacao": 9000,
-                "id": 1,
-                "juros": 2700,
-                "prestacao": 11700,
-                "saldo_devedor": 18000
-            },
-            {
-                "amortizacao": 9000,
-                "id": 2,
-                "juros": 1800,
-                "prestacao": 10800,
-                "saldo_devedor": 9000
+                "parcelas": [
+                    {
+                        "id": 0,
+                        "saldo_total": 25000
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 1,
+                        "juros": 2500,
+                        "prestacao": 4583.333333333334,
+                        "saldo_devedor": 22916.666666666668
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 2,
+                        "juros": 2291.666666666667,
+                        "prestacao": 4375,
+                        "saldo_devedor": 20833.333333333336
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 3,
+                        "juros": 2083.3333333333335,
+                        "prestacao": 4166.666666666667,
+                        "saldo_devedor": 18750.000000000004
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 4,
+                        "juros": 1875.0000000000005,
+                        "prestacao": 3958.333333333334,
+                        "saldo_devedor": 16666.66666666667
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 5,
+                        "juros": 1666.6666666666672,
+                        "prestacao": 3750.000000000001,
+                        "saldo_devedor": 14583.333333333338
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 6,
+                        "juros": 1458.333333333334,
+                        "prestacao": 3541.6666666666674,
+                        "saldo_devedor": 12500.000000000004
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 7,
+                        "juros": 1250.0000000000005,
+                        "prestacao": 3333.333333333334,
+                        "saldo_devedor": 10416.66666666667
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 8,
+                        "juros": 1041.666666666667,
+                        "prestacao": 3125.0000000000005,
+                        "saldo_devedor": 8333.333333333336
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 9,
+                        "juros": 833.3333333333336,
+                        "prestacao": 2916.666666666667,
+                        "saldo_devedor": 6250.000000000002
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 10,
+                        "juros": 625.0000000000002,
+                        "prestacao": 2708.333333333334,
+                        "saldo_devedor": 4166.666666666668
+                    },
+                    {
+                        "amortizacao": 2083.3333333333335,
+                        "id": 11,
+                        "juros": 416.6666666666668,
+                        "prestacao": 2500.0000000000005,
+                        "saldo_devedor": 2083.3333333333344
+                    }
+                ],
+                "tem_situacao": false,
+                "valor_maximo_p_parcela": 720
             }
           ]
 
@@ -283,6 +356,69 @@ def PossibilidadeCompra(user_id):
 
 @app.route("/novo/usuario", methods=['POST'])
 def NovoUsuario():
+    """CPF, Nome Completo, data de nascimento, se tem FGTS e quanto tem no FGTS e armazene esses dados em base de dados, bem como os dados da simulação.
+    ---
+    tags:
+        - Usuários
+    parameters:
+      - name: salario_usuario
+        in: path
+        type: integer
+        required: true
+      - name: taxa_anual
+        in: path
+        type: integer
+        required: true
+      - name: percentual_entrada
+        in: path
+        type: integer
+        required: true
+      - name: nome_completo
+        in: path
+        type: string
+        required: true
+      - name: taxa_anual
+        in: cpf
+        type: integer
+        required: true
+      - name: data_nascimento
+        in: path
+        type: string
+        required: true
+      - name: valor_fgts
+        in: path
+        type: integer
+        required: true
+      - name: tem_fgts
+        in: path
+        type: boolean
+        required: true
+      - name: email
+        in: path
+        type: string
+        required: true
+    responses:
+      200:
+        description: Retorna o 
+        usuário inserido.
+        examples:
+          data: [
+            {
+                "cpf": "00000000000",
+                "data_criacao": "2018-11-20T14:30:18.830557+00:00",
+                "data_nascimento": "1997-02-01T00:00:00+00:00",
+                "email": "grsegalla@hotmail.com",
+                "fgts": 1,
+                "id": 1,
+                "nome_completo": "Gabriel Rodrigues Segalla",
+                "percentual_entrada": 50,
+                "salario_usuario": 2400,
+                "taxa_anual": 10,
+                "valor_maximo_parcelas": 720
+            }
+          ]
+
+    """
     response = UsuarioController().novo_usuario(
         request.values.get('salario_usuario'),
         request.values.get('taxa_anual'),
@@ -298,6 +434,40 @@ def NovoUsuario():
 
 @app.route("/usuarios", methods=['GET'])
 def Usuarios():
+    """Endpoint para retornar os usuarios
+    ---
+    tags:
+        - Usuários
+    parameters:
+      - name: offset
+        in: path
+        type: integer
+        required: true
+      - name: limit
+        in: path
+        type: integer
+        required: true
+    responses:
+      200:
+        description: Retorna a lista de usuários.
+        examples:
+          data: [
+            {
+                "cpf": "00000000000",
+                "data_criacao": "2018-11-20T14:30:18.830557+00:00",
+                "data_nascimento": "1997-02-01T00:00:00+00:00",
+                "email": "grsegalla@hotmail.com",
+                "fgts": 1,
+                "id": 1,
+                "nome_completo": "Gabriel Rodrigues Segalla",
+                "percentual_entrada": 50,
+                "salario_usuario": 2400,
+                "taxa_anual": 10,
+                "valor_maximo_parcelas": 720
+            }
+          ]
+
+    """
     response = UsuarioController().usuarios(
         request.values.get('offset'),
         request.values.get('limit')
