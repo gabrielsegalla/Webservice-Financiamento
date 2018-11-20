@@ -201,6 +201,10 @@ def Usuarios():
     )
     return UsuarioSchema(many=True).jsonify(response)
 
+@app.route("/")
+def Index():
+    return "API FUNCIONANDO"
+
 @manager.command
 def runserver():
     """Method for run project."""
