@@ -204,11 +204,30 @@ def Prestacoes():
         required: true    
     responses:
       200:
-        description: A list of colors (may be filtered by palette)
+        description: Uma lista de parcelas, contendo sua data de vencimento e o  valor da parcela na data de vencimento utilizando a metodologia SAC
         schema:
-          $ref: '#/definitions/Palette'
-        examples:
-          rgb: ['red', 'green', 'blue']
+          data: [
+            {
+                "id": 0,
+                "saldo_total": 27000
+            },
+            {
+                "amortizacao": 9000,
+                "id": 1,
+                "juros": 2700,
+                "prestacao": 11700,
+                "saldo_devedor": 18000
+            },
+            {
+                "amortizacao": 9000,
+                "id": 2,
+                "juros": 1800,
+                "prestacao": 10800,
+                "saldo_devedor": 9000
+            }
+          ]
+        
+
     """
     response = FinanciamentoController().gerar_parcelas(
         request.values.get('valor_imovel'),
