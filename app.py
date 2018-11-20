@@ -9,7 +9,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 #from flasgger import Swagger
-from flask import Flask
+from flask import Flask, jsonify
+from flasgger import Swagger
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
@@ -32,7 +33,7 @@ SQLALCHEMY_ECHO = False
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 migrate = Migrate(app, db)
-#swagger = Swagger(app)
+swagger = Swagger(app)
 
 class UsuarioController():
     def novo_usuario(
@@ -180,6 +181,35 @@ class UsuarioSchema(ma.ModelSchema):
     
 @app.route("/calcular/prestacoes", methods=['POST'])
 def Prestacoes():
+    """Recebe o valor do imóvel, a taxa de juro, o percentual de entrada, a quantidade de parcelas, 
+    e retorne uma lista de parcelas, contendo sua data de vencimento e o 
+    valor da parcela na data de vencimento utilizando a metodologia SAC..
+    ---
+    parameters:
+      - name: valor_imovel
+        in: path
+        type: integer
+        required: true
+      - name: taxa_juros
+        in: path
+        type: integer
+        required: true
+      - name: percentual_entrada
+        in: path
+        type: integer
+        required: true
+      - name: qt_parcelas
+        in: path
+        type: integer
+        required: true    
+    responses:
+      200:
+        description: A list of colors (may be filtered by palette)
+        schema:
+          $ref: '#/definitions/Palette'
+        examples:
+          rgb: ['red', 'green', 'blue']
+    """
     response = FinanciamentoController().gerar_parcelas(
         request.values.get('valor_imovel'),
         request.values.get('taxa_juros'),
