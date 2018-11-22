@@ -1,6 +1,6 @@
 # from server.server import app, db, host, port, debug, ma
 from flask_migrate import Migrate, MigrateCommand
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from flask_script import Manager
 from datetime import datetime
 from sqlalchemy import desc
@@ -475,7 +475,7 @@ def Usuarios():
 
 @app.route("/")
 def Index():
-    return "API FUNCIONANDO"
+    return render_template('index.html')
 
 @manager.command
 def runserver():
