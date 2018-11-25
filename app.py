@@ -68,16 +68,16 @@ class EmailController():
 
     def send_mail(self, content,to):
         msg = MIMEMultipart()
-        msg['From'] = "No-Reply Financiamento <no-reply@financiamento.com>"
+        msg['From'] = "No-Reply Financiamento <webservice.financiamento.segalla@gmail.com>"
         msg['Subject'] = "Sua cotação de parcelamento"
         body = "Segue sua cotação de parcelamento \n \n {}".format(content)
         msg.attach(MIMEText(body, 'plain'))
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
-        server.login("consulta.publica.agrosatelite", "02HxINUu")
+        server.login("webservice.financiamento.segalla", "Lu17031975")
         text = msg.as_string()
-        server.sendmail("grodriguessegalla@gmail.com", to, text)    
+        server.sendmail("webservice.financiamento.segalla@gmail.com", to, text)    
 
 class FinanciamentoController():
 
