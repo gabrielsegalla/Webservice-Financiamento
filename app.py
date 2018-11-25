@@ -177,6 +177,8 @@ class UsuarioSchema(ma.ModelSchema):
     class Meta:
         model = Usuario
 
+    fgts = ma.Nested(FGTSSchema, many=True)
+
     
 @app.route("/calcular/prestacoes", methods=['POST'])
 def Prestacoes():

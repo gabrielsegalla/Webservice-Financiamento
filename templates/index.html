@@ -53,24 +53,35 @@
       <p>Retorna uma lista de parcelas, contendo sua data de vencimento e o valor da parcela na data de vencimento utilizando a metodologia SAC.</p>
       
       <div class="row">
-          <form style="width: 100%;">
-            <div class="form-group">
+        <form action="{{ url_for('Prestacoes') }}" method=post class=add-entry>
+            <dl>
+                <dt>Valor do Imovel:
+                <dd><input type=number name=valor_imovel>
+                <dt>Taxa de Juros:
+                <dd><input type=number name=taxa_juros>
+                <dt>Percentual de entrada:
+                <dd><input type=number name=percentual_entrada>
+                <dt>Quantidade de Parcelas:
+                <dd><input type=number name=qt_parcelas>
+                <dd><input type=submit value=Calcular>
+            </dl>
+  <!--        <div class="form-group">
               <label for="valor_imovel">Valor do Imovel</label>
-              <input type="number" step="0.01" class="form-control" id="valor_imovel" aria-describedby="emailHelp" placeholder="Digite o Valor do Imovel">
+              <input type="number" step="0.01" class="form-control" name="valor_imovel" id="valor_imovel" aria-describedby="emailHelp" placeholder="Digite o Valor do Imovel">
             </div>
             <div class="form-group">
               <label for="taxa_juros">Taxa de Juros (%)</label>
-              <input type="number" step="0.01" class="form-control" id="taxa_juros" aria-describedby="emailHelp" placeholder="Digite a Taxa de Juros">
+              <input type="number" step="0.01" class="form-control" name="taxa_juros" id="taxa_juros" aria-describedby="emailHelp" placeholder="Digite a Taxa de Juros">
             </div>
             <div class="form-group">
               <label for="percentual_entrada">Percentual de Entrada (%)</label>
-              <input type="number" step="0.01" class="form-control" id="percentual_entrada" aria-describedby="emailHelp" placeholder="Digite o Percentual de Entrada">
+              <input type="number" step="0.01" class="form-control" name="percentual_entrada" id="percentual_entrada" aria-describedby="emailHelp" placeholder="Digite o Percentual de Entrada">
             </div>
             <div class="form-group">
               <label for="qt_parcelas">Quantidade de Parcelas</label>
-              <input type="number" step="0.01" class="form-control" id="qt_parcelas" aria-describedby="emailHelp" placeholder="Digite a Quantidade de Parcelas">
+              <input type="number" step="0.01" class="form-control" name="qt_parcelas" id="qt_parcelas" aria-describedby="emailHelp" placeholder="Digite a Quantidade de Parcelas">
             </div>
-            <button type="submit" class="btn btn-primary">Calcular</button>
+            <button type="submit" class="btn btn-primary">Calcular</button>-->  
           </form>
       </div>
 
